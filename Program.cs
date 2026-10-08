@@ -66,8 +66,15 @@
                     // Försöker omvandla text till tal
                     int number = int.Parse(line); // Kan ge FormatException
 
-                    // Division: kan ge DivideByZeroException
-                    return 100.0 / number;
+					// Förbättring: kontrollera division med noll innan beräkningen.
+					// Om talet är 0 kastas ett DivideByZeroException som sedan hanteras i Main.
+					if (number == 0)
+					{
+						throw new DivideByZeroException();
+					}
+
+					// Division: kan ge DivideByZeroException
+					return 100.0 / number;
                 }
                 catch (FormatException ex)
                 {
